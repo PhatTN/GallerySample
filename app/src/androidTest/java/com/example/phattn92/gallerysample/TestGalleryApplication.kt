@@ -1,12 +1,10 @@
 package com.example.phattn92.gallerysample
 
-import com.example.phattn92.gallerysample.di.DaggerAppTestComponent
+import com.example.phattn92.gallerysample.di.AppTestInjector
 
 class TestGalleryApplication : GalleryApplication() {
 
     override fun injectDependencies() {
-        DaggerAppTestComponent.builder()
-                .application(this)
-                .build()
+        AppTestInjector.init(this)
     }
 }

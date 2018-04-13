@@ -1,22 +1,22 @@
 package com.example.phattn92.gallerysample.presentation.login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.VisibleForTesting
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.phattn92.gallerysample.R
 import com.example.phattn92.gallerysample.common.ActivityUtil
+import com.example.phattn92.gallerysample.di.Injectable
 import com.example.phattn92.gallerysample.presentation.gallery.GalleryActivity
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_login.login_button as loginButton
 import kotlinx.android.synthetic.main.fragment_login.password_edit_text as passwordEditText
 import kotlinx.android.synthetic.main.fragment_login.username_edit_text as usernameEditText
 
-class LoginFragment : Fragment(), LoginContract.View {
+class LoginFragment : Fragment(), LoginContract.View, Injectable {
 
     companion object {
         fun newInstance() : Fragment {
@@ -24,20 +24,11 @@ class LoginFragment : Fragment(), LoginContract.View {
         }
     }
 
-    @Inject lateinit var presenter: LoginContract.Presenter
-    @Inject lateinit var activityUtil: ActivityUtil
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-
-        if (!this::presenter.isInitialized) {
-            AndroidSupportInjection.inject(this)
-        }
-
-        presenter.attachView(this)
-    }
+    @Inject @VisibleForTesting lateinit var presenter: LoginContract.Presenter
+    @Inject @VisibleForTesting lateinit var activityUtil: ActivityUtil
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        presenter.attachView(this)
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 

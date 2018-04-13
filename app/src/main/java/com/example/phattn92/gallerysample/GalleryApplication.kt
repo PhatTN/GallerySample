@@ -12,6 +12,11 @@ open class GalleryApplication : Application(), HasActivityInjector {
 
     @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
+    override fun onCreate() {
+        super.onCreate()
+        injectDependencies()
+    }
+
     override fun activityInjector(): AndroidInjector<Activity> {
         return dispatchingAndroidInjector
     }

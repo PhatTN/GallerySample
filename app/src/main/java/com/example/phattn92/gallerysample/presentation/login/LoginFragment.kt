@@ -51,7 +51,7 @@ class LoginFragment : Fragment(), LoginContract.View, Injectable {
         context?.let { activityUtil.showToast(it, "Username or password should not empty") }
     }
 
-    override fun showUnknowError() {
+    override fun showUnknownError() {
         context?.let { activityUtil.showToast(it, "Something is wrong!") }
     }
 

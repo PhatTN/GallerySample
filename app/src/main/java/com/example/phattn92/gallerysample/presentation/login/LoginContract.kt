@@ -7,7 +7,7 @@ interface LoginContract {
         fun openGallery()
         fun showIncorrectUsername()
         fun showAccountShouldNotEmpty()
-        fun showUnknowError()
+        fun showUnknownError()
     }
 
     interface Presenter : BasePresenter<View> {

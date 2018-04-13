@@ -33,7 +33,7 @@ class LoginPresenter(private val loginUseCase: LoginUseCase,
                     when (throwable) {
                         is IllegalArgumentException -> view.showAccountShouldNotEmpty()
                         is AuthenticationFailureException -> view.showIncorrectUsername()
-                        else -> view.showUnknowError()
+                        else -> view.showUnknownError()
                     }
                 })
                 .let { disposables.add(it) }
